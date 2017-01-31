@@ -1,5 +1,5 @@
 # stereo-mixer
 Webインタフェースでやるオーディオミキサー(仮)
 
-## steleo-mixer-web
+## stereo-mixer-web
 web アプリケーション
