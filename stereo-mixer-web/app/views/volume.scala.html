@@ -1,0 +1,24 @@
+
+@(volume: Int) @* ボリューム *@
+
+<!DOCTYPE html>
+<html lang="ja_JP">
+<head>
+    <meta charset="UTF-8">
+    <title>Volume Controller</title>
+
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.versioned("stylesheets/slideControl.css")" />
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+    <script type="text/javascript" src="@routes.Assets.versioned("javascripts/slider.js")"></script>
+
+</head>
+<body>
+
+<h1>Volume Controller</h1>
+
+<input id="range-ch1" type="range" min="0" max="100" step="1"/>
+<span id="showRangeArea">0</span>
+
+
+</body>
+</html>
