@@ -21,7 +21,7 @@ def read():
   
   volume_dict = {}
   for line in lines:
-    dict[line[0]]=line[1]
+    volume_dict[int(line[0])]=int(line[1])
   
   f.close()
   
@@ -30,12 +30,12 @@ def read():
 
 # ボリュームファイルへの書き込み
 # 書き込み形式 channel,volume\n ...
-def write(volume):
+def write(volume_dict):
   
   f = open('mixer.vol', 'w')
   
-  for i in range(1, volume_dict.size()):
-    f.write(i + ',' + volume[i])
+  for i in range(1, len(volume_dict) + 1):
+    f.write(str(i) + ',' + str(volume_dict[i]) + '\n')
   
   f.close()
 
@@ -69,10 +69,10 @@ if __name__ == '__main__':
   if args.mode == 'get':
     volumes = read()
     for item in volumes.items():
-      print item[0] + ',' + item[1]
+      print str(item[0]) + ',' + str(item[1])
   
   elif args.mode == 'set':
     if args.channel and args.volume:
-      setvolume(args.channel, args.volume)
+      setvolume(int(args.channel), int(args.volume))
     else:
       print u'引数が不足しています'
