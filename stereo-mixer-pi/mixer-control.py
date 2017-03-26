@@ -2,13 +2,13 @@
 
 import spidev #https://github.com/doceme/py-spidev
 import RPi.GPIO as GPIO
+import time
 import sys
 import argparse
 
 # バスを開く
 spi = spidev.SpiDev()
 spi.open(0,0)
-
 
 def init():
   write({1:100, 2:100, 3:100, 4:100})
@@ -44,11 +44,15 @@ def write(volume_dict):
 def send(channel, volume):
 
   chip_address = channel - 1
-  vol = int(95/100 * volume) << 1
+  vol = int(95.0/100 * (100 - volume)) << 1
   
-  for i in range(0,1):
-    select = i << 4
-    spi.xfer([chip_address + select, vol])
+  send_data = [[vol, chip_address + (1 << 4)],
+               [vol, chip_address]]
+     
+  
+  for data in send_data:
+    print format(data[0], '08b')
+    spi.xfer2(data)
 
 
 # ボリュームを変える
